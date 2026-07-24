@@ -2,7 +2,7 @@ from utils import module_error,clear_window
 import math
 import cmath
 from func_comprobacion import validar_flotante,validar_divisor,validar_entero
-def calculadora():
+def main():
     # Calculadora Númerica Basica
 
     print("Bienvenido a la calculadora básica de Python")
