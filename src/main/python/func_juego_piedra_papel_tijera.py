@@ -19,7 +19,7 @@
 import random
 import utils 
 
-def jugar():
+def main():
     """
     
     Ejecuta una partida del juego Piedra, Papel o Tijera contra la computadora.
