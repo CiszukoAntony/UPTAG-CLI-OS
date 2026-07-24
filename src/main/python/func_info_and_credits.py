@@ -22,7 +22,7 @@ from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 from utils import clear_window, loading, ansi_text, init_username, call_username, main_error, module_error
 
-def info_and_credits():
+def main():
     """
     Informacion y creditos.
     -
