@@ -1,18 +1,14 @@
-# Documentacion del main
+# Importacion de librerias y modulos.
 
-"""
-Modulo principal del sistema operativo.
---- 
-Args:
-    None.
---- 
-Returns:
-    None.
---- 
-Raises:
-    Exception: Si ocurre un error inesperado.
---- 
-"""
+import sys
+import func_juego_piedra_papel_tijera
+import func_juego_adivina
+import func_calculadora
+import func_manual_de_uso
+import func_info_and_credits
+import func_divisa
+import func_convertidor_unidades_longitud
+from utils import clear_window, loading, ansi_text, init_username, call_username, main_error, module_error
 
 # Documentacion del Mini Sistema Operativo UPTAG CLI OS
 
@@ -141,16 +137,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE."""
 
-# Importacion de librerias y modulos.
 
-import sys
-import func_juego_piedra_papel_tijera
-import func_juego_adivina
-import func_calculadora
-import func_manual_de_uso
-import func_info_and_credits
-import func_divisa
-from utils import clear_window, loading, ansi_text, init_username, call_username, main_error, module_error
 
 # Main.
 
@@ -225,12 +212,21 @@ def main():
         opciones = [
             "Calculadora Científica", #1
             "Conversor de Divisas",   #2
+            "convertidor de unidades de longitud",
             "Juego: Adivina el Número", #3
             "Juego: Piedra, Papel o Tijera", #4
             "Manual de Uso", #5
             "Información del SO y Créditos", #6
             "Apagar Sistema Operativo" #7
         ]
+        llamadas=[func_calculadora.main,
+                  func_divisa.main,
+                  func_convertidor_unidades_longitud.main,
+                  func_juego_adivina.main,
+                  func_juego_piedra_papel_tijera.main,
+                  func_manual_de_uso.main,
+                  func_info_and_credits.main
+                  ]
 
         print(f"{ansi_text.WHITE}={ansi_text.RESET}" * 100)
         print(f"""{ansi_text.ORANGE}
@@ -255,34 +251,25 @@ def main():
 
         try:
             opcion_usuario = int(input(f"{call_username()}, seleccione una opción dentro del rango {ansi_text.ORANGE}1 a {len(opciones)}{ansi_text.WHITE} opciones... \n {ansi_text.BLUE_BACKGROUND_BOLD}>>>{ansi_text.RESET} "))-1
-            print(f"\n{call_username()}{ansi_text.WHITE}, seleccionó la opción {ansi_text.ORANGE}{opciones[opcion_usuario]}.{ansi_text.RESET}")
 
-            if opcion_usuario == 0:
-                func_calculadora.calculadora()
 
-            elif opcion_usuario == 1:
-                func_divisa.convertir()
-
-            elif opcion_usuario == 2:
-                func_juego_adivina.juego_adivina_el_numero()
-
-            elif opcion_usuario == 3:
-                func_juego_piedra_papel_tijera.jugar()
-
-            elif opcion_usuario == 4:
-                func_manual_de_uso.main()
-
-            elif opcion_usuario == 5:
-                func_info_and_credits.info_and_credits()
-
-            elif opcion_usuario == 6:
-                break
-
-            else:
+            if opcion_usuario < 0 or opcion_usuario > len(llamadas):
                 print(f"{ansi_text.RED}Error: Opción inválida, {call_username()}, intente de nuevo. Seleccione una opción dentro del rango {ansi_text.ORANGE}1 a {len(opciones)}{ansi_text.WHITE} opciones... {ansi_text.RESET}")
 
-        except Exception as error:
-            print(f"{ansi_text.RED}Error: {error}, {ansi_text.CYAN}{call_username()}{ansi_text.RESET}, intente de nuevo. Seleccione una opción dentro del rango {ansi_text.ORANGE}1 a {len(opciones)}{ansi_text.WHITE} opciones... {ansi_text.RESET}")
+            else:
+                print(f"\n{call_username()}{ansi_text.WHITE}, seleccionó la opción {ansi_text.ORANGE}{opciones[opcion_usuario]}.{ansi_text.RESET}")                
+                if opcion_usuario == len(llamadas):
+                    break
+            
+                elif opcion_usuario >= 0 and opcion_usuario <= len(llamadas)-1:
+                    print("error")
+                    llamadas[opcion_usuario]()
+            
+            
+
+
+        except ValueError:
+            print(f"{ansi_text.RED}Error: la opcion no es valido, {ansi_text.CYAN}{call_username()}{ansi_text.RESET}, intente de nuevo. Seleccione una opción dentro del rango {ansi_text.ORANGE}1 a {len(opciones)}{ansi_text.WHITE} opciones... {ansi_text.RESET}")
 
         loading(1)
         input(f"\n{ansi_text.WHITE}=== {call_username()}, presiona {ansi_text.GREEN}ENTER{ansi_text.WHITE} para volver al {ansi_text.ORANGE}MENU PRINCIPAL{ansi_text.RESET} ===\n")
@@ -299,8 +286,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt as kd:
         print(f"\n{ansi_text.RED}Error: (Control + C) detectado de forma abrupta... {kd}{ansi_text.RESET}")
         
-    except Exception as error:
-        print(f"\n{ansi_text.RED}Error fatal del sistema: {error}{ansi_text.RESET}")
 
     print(f"\n{ansi_text.RED}Saliendo del sistema operativo...{ansi_text.RESET}\n")
     loading(3, 1, "Apagando...")
