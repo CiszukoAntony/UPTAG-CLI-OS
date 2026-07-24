@@ -22,7 +22,7 @@
 import random
 import utils
 
-def juego_adivina_el_numero():
+def main():
     """
     Ejecuta el juego completo de 'Adivina el número'.
     -
