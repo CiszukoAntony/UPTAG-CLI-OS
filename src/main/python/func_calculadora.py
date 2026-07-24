@@ -13,11 +13,11 @@ def main():
         print("""
         1. Suma					8. Coseno
         2. Resta				9. Seno
-        3. Multiplicacion			10. Tangente
+        3. Multiplicacion		10. Tangente
         4. Division				11. Porcentaje
         5. Potencia				12. Logaritmo base 10
-        6. Raíz Cuadrada			13. Factorial
-        7. Raíz Cúbica				14. Salida del programa.
+        6. Raíz Cuadrada		13. Factorial
+        7. Raíz Cúbica			14. Salida del programa.
         """)
         print("="*90)
         
