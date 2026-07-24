@@ -15,7 +15,7 @@ Raises:
 from func_comprobacion import validar_mayor_cero
 from utils import clear_window, module_error
 
-def convertir():
+def main():
     """
     Solicita al usuario las divisas de origen y destino, junto con el monto,
     para calcular y mostrar el resultado de la conversión.
