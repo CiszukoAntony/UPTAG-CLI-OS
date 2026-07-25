@@ -2,6 +2,7 @@ from utils import module_error,clear_window
 import math
 import cmath
 from func_comprobacion import validar_flotante,validar_divisor,validar_entero
+
 def main():
     # Calculadora Númerica Basica
 
@@ -11,13 +12,13 @@ def main():
         print("Ingrese el valor númerico de la operacion que quieres realizar")
         print("="*90)
         print("""
-        1. Suma					8. Coseno
-        2. Resta				9. Seno
-        3. Multiplicacion		10. Tangente
-        4. Division				11. Porcentaje
-        5. Potencia				12. Logaritmo base 10
-        6. Raíz Cuadrada		13. Factorial
-        7. Raíz Cúbica			14. Salida del programa.
+1. Suma					8. Coseno
+2. Resta				9. Seno
+3. Multiplicacion		        10. Tangente
+4. Division				11. Porcentaje
+5. Potencia				12. Logaritmo base 10
+6. Raíz Cuadrada		        13. Factorial
+7. Raíz Cúbica			        14. Salida del programa.
         """)
         print("="*90)
         
@@ -99,12 +100,13 @@ def main():
             # Salida
             elif op == 14:
                 print("Se ha cerrado el programa. Gracias por utilizarlo.")
-                return
-        # Pregunta de continuación 
-        continuar = input("¿Desea continuar utilizando el programa? (s/n): ").lower().strip()
-        if continuar != "s":
-            print("Saliste del programa. Gracias por utilizarlo, suerte! ")
-            break
+                break
+        # Pregunta de continuación
+        if op != 14:
+            continuar = input("¿Desea continuar utilizando el programa? (s/n): ").lower().strip()
+            if continuar != "s":
+                print("Saliste del programa. Gracias por utilizarlo, suerte! ")
+                break
 ### Comprobación de main ###
 
 if __name__ == "__main__":
