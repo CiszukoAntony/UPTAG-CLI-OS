@@ -1,37 +1,26 @@
-"""
-Módulo principal del Manual de Uso del Sistema Operativo.
----
-Este módulo contiene las funciones para mostrar instrucciones y
-guías de uso de las diferentes herramientas del sistema.
----
-Args:
-    None.
----
-Returns:
-    None.
----
-Raises:
-    Exception: Si ocurre un error inesperado al ejecutar el programa.
----
-"""
 # Manual de Uso Simple
 # Este programa muestra instrucciones básicas de uso
 
-from utils import clear_window, module_error
+import utils 
 
 def mostrar_menu():
     
     """muestra el menu de opciones"""
-    
+    lista_menu=["calculadora",
+                "conversión de divisas",
+                "Convertidor de unidades de longitud",
+                "piedra,papel,tijera",
+                "adivina el número",
+                "información y creditos",
+                "salir"]
     print("\n" + "="*40)
     print("        MANUAL DE USO      ")
     print("="*40)
-    print("1. calculadora.")
-    print("2. conversión de divisas.")
-    print("3. piedra,papel,tijera.")
-    print("4. adivina el número.")
-    print("5. información y creditos.")
-    print("6. salir.")
+    
+    for indice, opcion in enumerate(lista_menu):
+        
+        print(f"{utils.ansi_text.CYAN}( {indice + 1}. ){utils.ansi_text.GRAY} | {utils.ansi_text.ORANGE}[ {opcion}. ]{utils.ansi_text.RESET}")
+    
     print("="*40)
     
 #ahora se continua con las opciones
@@ -75,11 +64,24 @@ def mostrar_informacion_creditos():
     """muestra información sobre los creditos y algo amdde información"""
     
     print("\n[Información y creditos]")
-    print("una vez dentro se mostrara la información mas relevante del oroyecto ais como los créditos correspondientes a los autores, no se debera mover ni modificar nada ya que podria dañar el proyecto y afectar su rendimiento, lo autores de este proyecto son: francisco García, santaigo rojas,ivan quevedo,luis colina y hanzer sivira :.")
+    print("una vez dentro se mostrara la información mas relevante del proyecto asi como los créditos correspondientes a los autores, no se debera mover ni modificar nada ya que podria dañar el proyecto y afectar su rendimiento, lo autores de este proyecto son: francisco García, santaigo rojas,ivan quevedo,luis colina y hanzer sivira :.")
     print("Presiona ENTER para continuar...")
     input()
+#Manual del convertidor de unidades de longitud  
+def mostrar_convertidor_de_unidades_de_longitud():
+    print("\n[Convertidor de unidades de longitud]")
+    print("\nUn programa creado para su finalidad expresa en su titulo, convertir unidades")
+    print("La forma correcta de uso es dejarse guiar por la informacion misma en la herramienta")
+    print(f"""En colaboracion con:
+{utils.ansi_text.ORANGE}Gustavo Noguera
+Luis pinzon
+Isaac Soto          
+Jean Prado
+Marlon Valles{utils.ansi_text.RESET}""")
+    input()    
     
-    #y por ultimo la calculadora
+    
+#y por ultimo la calculadora
     
 def mostrar_calculadora():
     
@@ -94,36 +96,44 @@ def mostrar_calculadora():
 # Programa principal
 
 def main():
-    
+
+    lista_menu=[mostrar_calculadora,
+            mostrar_conversion_de_divisa,
+            mostrar_convertidor_de_unidades_de_longitud,
+            mostrar_piedra_papel_tijeras,
+            mostrar_adivina_el_numero,
+            mostrar_informacion_creditos
+            ]
+
     """Esta función controla el flujo principal del programa mostrando el menú
     de opciones al usuario, procesando su selección y llamando a las funciones
     correspondientes. El bucle se mantiene activo hasta que el usuario elige
-    la opción de salir (6)."""
+    la opción de salir."""
     
     while True:
         mostrar_menu()
-        opcion = input("Selecciona una opción (1-6): ")
+        try:
+            opcion = int(input(f"{utils.ansi_text.ORANGE}Selecciona una opción {utils.ansi_text.BLUE}(1-{len(lista_menu)+1}){utils.ansi_text.ORANGE}: {utils.ansi_text.RESET}"))-1
         
-        if opcion == "1":
-            mostrar_calculadora()
-        elif opcion == "2":
-          mostrar_conversion_de_divisa()
-        elif opcion == "3":
-            mostrar_piedra_papel_tijeras()  
-        elif opcion == "4":
-            mostrar_adivina_el_numero()
-        elif opcion == "5":
-            mostrar_informacion_creditos()
-        elif opcion == "6":
-            print("\n¡Hasta luego! Gracias por usar el manual.")
-            break
-        else:
-            print("\n¡Opción inválida! Por favor, elige 1-6.")
-            print("Presiona ENTER para continuar...")
-            input()
+            if opcion < 0 or opcion > len(lista_menu):
+                print(f"\n{utils.ansi_text.RED}¡Opción inválida! Por favor, elige 1-{len(lista_menu)}.") 
+                input(f"{utils.ansi_text.ORANGE}Presiona ENTER para continuar...{utils.ansi_text.RESET}")
+        
+            else:
+                if opcion == len(lista_menu):
+                    break
+                elif opcion >= 0 and opcion<=len(lista_menu)-1:
+                    utils.clear_window()
+                    lista_menu[opcion]()
+                    utils.clear_window()
+        except ValueError:
+             print(f"\n{utils.ansi_text.RED}¡Opción inválida! Por favor, elige 1-{len(lista_menu)}.") 
+             input(f"{utils.ansi_text.ORANGE}Presiona ENTER para continuar...{utils.ansi_text.RESET}")
+  
+    print("Gracias por usar el Manual")
 
 ### Comprobación de main ###
 
 if __name__ == "__main__":
-    clear_window()
-    module_error(__name__, __file__, __package__, __doc__)
+    utils.clear_window()
+    utils.module_error(__name__, __file__, __package__, __doc__)
