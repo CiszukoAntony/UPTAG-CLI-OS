@@ -99,6 +99,7 @@ def main():
             # Salida
             elif op == 14:
                 print("Se ha cerrado el programa. Gracias por utilizarlo.")
+                return
         # Pregunta de continuación 
         continuar = input("¿Desea continuar utilizando el programa? (s/n): ").lower().strip()
         if continuar != "s":
