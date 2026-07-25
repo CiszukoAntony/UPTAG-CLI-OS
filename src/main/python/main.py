@@ -148,11 +148,12 @@ def main():
         Funcion principal main del sistema operativo UPTAG CLI OS.
             1. Calculadora Científica
             2. Conversor de Divisas
-            3. Juego: Adivina el Número
-            4. Juego: Piedra, Papel o Tijera
-            5. Manual de Uso
-            6. Información del SO y Créditos
-            7. Apagar Sistema Operativo
+            3. Convertidor De Unidades De Longitud
+            4. Juego: Adivina el Número
+            5. Juego: Piedra, Papel o Tijera
+            6. Manual de Uso
+            7. Información del SO y Créditos
+            8. Apagar Sistema Operativo
     Args:
         None.
     ---
@@ -210,14 +211,14 @@ def main():
         loading(1)
 
         opciones = [
-            "Calculadora Científica", #1
-            "Conversor de Divisas",   #2
-            "convertidor de unidades de longitud",
-            "Juego: Adivina el Número", #3
-            "Juego: Piedra, Papel o Tijera", #4
-            "Manual de Uso", #5
-            "Información del SO y Créditos", #6
-            "Apagar Sistema Operativo" #7
+            "Calculadora Científica",                 #1
+            "Conversor de Divisas",                   #2
+            "convertidor de unidades de longitud",    #3
+            "Juego: Adivina el Número",               #4
+            "Juego: Piedra, Papel o Tijera",          #5
+            "Manual de Uso",                          #6
+            "Información del SO y Créditos",          #7
+            "Apagar Sistema Operativo"                #8
         ]
         llamadas=[func_calculadora.main,
                   func_divisa.main,
